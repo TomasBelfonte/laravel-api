@@ -101,7 +101,7 @@ class ProjectController extends Controller
             // Dopo aver caricato la nuova immagine, PRIMA di aggiornare il db,
             // cancelliamo dallo storage il vecchio file.
             // $project->cover_img // vecchio file
-            Storage::delete($project->cover_img);
+            // Storage::delete($project->cover_img);
         }
 
         $project->update([

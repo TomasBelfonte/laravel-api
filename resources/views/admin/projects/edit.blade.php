@@ -33,7 +33,7 @@
                 <p>Tecnologia Applicata</p>
                 @foreach ($technologies as $technology)
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="tagCheckbox_{{ $loop->index }}" value="{{ $technology->id }}" name="techonolgy[]">
+                    <input class="form-check-input" type="checkbox" id="tagCheckbox_{{ $loop->index }}" value="{{ $technology->id }}" name="technologies[]">
                     <label class="form-check-label" for="tagCheckbox_{{ $loop->index }}">{{ $technology->name }}</label>
                     </div>
                 @endforeach
