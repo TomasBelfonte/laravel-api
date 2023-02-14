@@ -30,6 +30,16 @@
             </div>
 
             <div class="mb-3">
+                <p>Tecnologia Applicata</p>
+                @foreach ($technologies as $technology)
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="tagCheckbox_{{ $loop->index }}" value="{{ $technology->id }}" name="techonolgy[]">
+                    <label class="form-check-label" for="tagCheckbox_{{ $loop->index }}">{{ $technology->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="mb-3">
             <label class="form-label">Contenuto</label>
             <textarea name="content" cols="30" rows="5" class="form-control @error('content') is-invalid @enderror">{{ old('content', $project->content) }}</textarea>
             @error('content')

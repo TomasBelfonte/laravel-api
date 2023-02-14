@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,8 +76,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-
-        return view("admin.projects.edit", compact("project"));
+        $technologies = Technology::all();
+        return view("admin.projects.edit", compact("project", "technologies"));
     }
 
     /**
@@ -88,6 +89,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $project = Project::FindOrFail($id);
         $data = $request->all();
 
@@ -109,7 +111,9 @@ class ProjectController extends Controller
             "cover_img" => $path ?? $project->cover_img
         ]);
 
-        return redirect()->route("admin.project.show", compact("project"));
+        $project->technologies()->attach($data["technologies"]);
+
+        return redirect()->route("admin.projects.show", compact("project"));
     }
 
     /**
