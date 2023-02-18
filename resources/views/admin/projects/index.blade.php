@@ -30,7 +30,11 @@
                         @foreach ($projects as $project)
                             <tr>
                                 <td>{{ $project->id }}</td>
-                                <td><img src="{{ $project->cover_img }}" alt="" style="width: 60px"></td>
+                                <td>
+                                    @if (project->cover_img)
+                                    <img src="{{ asset ('storage/'.$project->cover_img) }}" alt="" style="width: 60px">
+                                    @endif
+                                </td>
                                 <td>{{ $project->user_id }}</td>
                                 <td>{{ $project->author }}</td>
                                 <td>{{ $project->title }}</td>
